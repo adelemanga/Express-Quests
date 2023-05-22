@@ -1,3 +1,5 @@
+const { Result } = require("postcss");
+
 const users = [
   {
     id: 1,
@@ -25,6 +27,27 @@ const users = [
   },
 ];
 
+const updateUsers =(req, res)=> {
+  const id = parseInt(req.params.id);
+  const {title, director, year, color, duration}=req.body;
+} 
+  database
+  .query("update users set title =?, director=?, year=?, color=?, duration=? where id=?", [title, director, year, color, duration]
+  [id, users, title, director, year, color, duratio, id])
+  .then(([Result])=>{
+    if(Result.affectedRows === 0){
+      res.status(404).send("Not Found");
+    } else{
+      res.sendStatus(204);
+    }
+  })
+  .catch((err)=>{
+    console.error(err);
+    res.status(500).sebd("Error editing to the users")
+  })
+
+
+
 
 const getUsers = (req, res) => {
   res.status(202).json(movies.users);
@@ -37,18 +60,11 @@ const getUsersById = (req, res) => {
   } else{res.status(404).send("Not Found");
   }
 
-  const postUsers = (req, res) => {
-    const {id, users, title, director, year, color, duration} = req.body;
-    database
-    .query(
-      "INSERT INTO users(id, users, title, director, year, color, duration)VALUES(4, Philippes, The moon, Elvis, 1884, green, 200)",
-       [id, users, title, director, year, color, duration]
-      )
-  };
 
 module.exports = {
 
   getUsers,
   postUsers,
   getUsersById,
+  updateUsers,
 }
