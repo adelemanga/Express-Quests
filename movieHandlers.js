@@ -8,6 +8,8 @@ const users = [
     year: "1941",
     colors: false,
     duration: 120,
+    language: French,
+    city:"Paris",
   },
   {
     id: 2,
@@ -16,6 +18,8 @@ const users = [
     year: "1972",
     colors: true,
     duration: 180,
+    language: Deutsch,
+    city:"Franckfort",
   },
   {
     id: 3,
@@ -24,33 +28,42 @@ const users = [
     year: "1994",
     color: true,
     duration: 180,
+    language: English,
+    city:"London",
   },
 ];
 
-const deleteUser = (req, res)=>{
-  const id = parseInt(req.params.id);
+
+
+const getUsers=(req, res)=>{
+  let sql = "select *from users";
+  const sqlValues = [];
+
+  if(req.query.language != null){
+    sql += "where language = ?";
+    sqlValues.push(req.query.language);
+
+    if(res.query.city != null){
+      sql += "and city = ?";
+      sqlValues.push(req.query.city);
+    }
+  }
 
   database
-  .query("delete from users where id=?", [id])
-  .then(([result])=>{
-    if(result.affectedRows === 0){
-      res.status(404).send("Not Found");
-    }else{
-      res.sendStatus(204);
-    }
+  .query(sql, sqlValues)
+  .then(([users])=>{
+    res.json(users);
   })
+
   .catch((err)=>{
     console.error(err);
-    res.status(500).send("Error deleting the user")
-  })
-}
-
-
-
-
-const getUsers = (req, res) => {
-  res.status(202).json(users);
+    res.status(505).send("Error retrieving data from database ");
+  });
 };
+
+
+
+
 
 const getUsersById = (req, res) => { 
   const userId = users.find((users) => users.id === users);
