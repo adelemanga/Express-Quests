@@ -17,6 +17,7 @@ const movieHandlers = require("./movieHandlers");
 // app.get("/api/movies/:id", movieHandlers.getMovieById);
 app.get("/api/users", movieHandlers.getUsers);
 app.get("api/users/:id", movieHandlers.getUsersById);
+app.post("api/postusers", movieHandlers.postUsers);
 
 app.listen(port, (err) => {
   if (err) {

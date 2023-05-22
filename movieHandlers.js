@@ -47,8 +47,7 @@ const getUsersById = (req, res) => {
   };
 
 module.exports = {
-  // getMovies,
-  // getMovieById,
+
   getUsers,
   postUsers,
   getUsersById,
