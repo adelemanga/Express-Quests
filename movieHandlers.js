@@ -52,19 +52,19 @@ const getUsersById = (req, res) => {
   } else{res.status(404).send("Not Found");
   }
 
-  // const postMovies = (req, res) => {
-  //   const {id, users, tittle, director, year, color, duration} = req.body;
-  //   database
-  //   .query(
-  //     "INSERT INTO movies(id, users, title, director, year, color, duration)VALUES(4, Philippes, The moon, Elvis, 1884, green, 200)",
-  //      [id, users, title, director, year, color, duration]
-  //     )
-  // };
+  const postUsers = (req, res) => {
+    const {id, users, title, director, year, color, duration} = req.body;
+    database
+    .query(
+      "INSERT INTO users(id, users, title, director, year, color, duration)VALUES(4, Philippes, The moon, Elvis, 1884, green, 200)",
+       [id, users, title, director, year, color, duration]
+      )
+  };
 
 module.exports = {
   // getMovies,
   // getMovieById,
   getUsers,
-  postMovies,
+  postUsers,
   getUsersById,
 }
