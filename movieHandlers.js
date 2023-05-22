@@ -49,13 +49,13 @@ const deleteUser = (req, res)=>{
 
 
 const getUsers = (req, res) => {
-  res.status(202).json(movies.users);
+  res.status(202).json(users);
 };
 
 const getUsersById = (req, res) => { 
   const userId = users.find((users) => users.id === users);
   if (user != null) {
-    res.json(movies.users);
+    res.json(users);
   } else{res.status(404).send("Not Found");
   }
 
