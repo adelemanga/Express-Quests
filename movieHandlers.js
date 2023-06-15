@@ -52,6 +52,20 @@ const getUsersById = (req, res) => {
   } else{res.status(404).send("Not Found");
   }
 
+const deleteUser = (req, res)=>{
+  const id = user.find((id)=>id ===id);
+  res.status(202).json(movies.users)
+}
+
+ const updateUser = (req, res)=>{
+  const id = user.find((id)=>id ===id);
+  res.status(202).json(movies.users)
+}
+
+ const postUser = (req, res)=>{
+  const id = user.find((id)=>id ===id);
+  res.status(202).json(movies.users)
+}
   // const postMovies = (req, res) => {
   //   const {id, users, tittle, director, year, color, duration} = req.body;
   //   database
@@ -65,6 +79,8 @@ module.exports = {
   // getMovies,
   // getMovieById,
   getUsers,
-  postMovies,
   getUsersById,
-}
+  deleteUser,
+  updateUser,
+  postUser
+}}

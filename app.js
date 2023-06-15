@@ -1,3 +1,5 @@
+const { hashPassword, verifyPassword, verifyToken } = require("./auth");
+
 const express = require("express");
 
 const app = express();
@@ -12,11 +14,23 @@ const welcome = (req, res) => {
 app.get("/", welcome);
 
 const movieHandlers = require("./movieHandlers");
+const { verify } = require("crypto");
 
 // app.get("/api/movies", movieHandlers.getMovies);
 // app.get("/api/movies/:id", movieHandlers.getMovieById);
 app.get("/api/users", movieHandlers.getUsers);
 app.get("api/users/:id", movieHandlers.getUsersById);
+
+
+app.use(verifyToken);
+
+
+app.post("/api/users", movieHandlers.postUser);
+app.put("/api/users/id", movieHandlers.updateUser);
+app.delete("/api/users/:id", movieHandlers.deleteUser);
+
+
+app.post("/api/login", userHandlers.getUserByEmailWithPasswordAndPassToNext, verifyPasseword);
 
 app.listen(port, (err) => {
   if (err) {
